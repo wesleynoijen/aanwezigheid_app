@@ -1,0 +1,201 @@
+:root {
+    --bg-primary: #1a142f;
+    --bg-secondary: #2a1f4a;
+    --glass-bg: rgba(70, 55, 125, 0.8);
+    --card-bg: rgba(90, 75, 145, 0.6);
+    --accent-primary: #8b5cf6;
+    --accent-hover: #c084fc;
+    --text-primary: #f5e6ff;
+    --text-secondary: #d8b4fe;
+    --border-subtle: rgba(139, 92, 246, 0.3);
+    --glow-primary: rgba(139, 92, 246, 0.6);
+    --glow-hover: rgba(192, 132, 252, 0.7);
+    --shimmer: rgba(255, 255, 255, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 70%, var(--accent-primary) 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    background: transparent;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.calender {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    align-content: space-between;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.4),
+        0 0 0 1px var(--border-subtle),
+        inset 0 1px 0 var(--shimmer);
+    padding: 40px 32px;
+    border: 1px solid var(--border-subtle);
+    width: 100%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.person {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    gap: 16px;
+    padding-top: 1%;
+    padding-right: 2%;
+    padding-left: 2%;
+    padding-bottom: 1%;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.person > div {
+    display: flex;
+    flex: 1;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+.person-text {
+    font-size: 1.6rem;
+    font-weight: 700;
+    width: 140px;
+    padding-right: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--text-primary) 0%, #f8f0ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    flex-shrink: 0;
+}
+
+.day {
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 18px 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    background: linear-gradient(145deg, var(--card-bg), var(--glass-bg));
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    flex: 1;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.day::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--shimmer), transparent);
+    transition: left 0.5s;
+}
+
+.day:hover::before {
+    left: 100%;
+}
+
+.day:hover {
+    color: #ffffff;
+    background: linear-gradient(145deg, var(--accent-hover), var(--accent-primary));
+    box-shadow: 
+        0 12px 24px var(--glow-hover),
+        0 0 0 1px var(--accent-primary),
+        inset 0 1px 0 var(--shimmer);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.day:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--glow-primary);
+}
+
+.day.active { background: #10b981 !important; color: white !important; }
+
+.reset-btn {
+    margin-top: 16px;
+    padding: 16px 32px;
+    background: linear-gradient(145deg, #ef4444, #dc2626);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+}
+
+.reset-btn:hover {
+    background: linear-gradient(145deg, #dc2626, #b91c1c);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(239, 68, 68, 0.6);
+}
+
+@media (max-width: 1400px) {
+    .container {
+        justify-content: start;
+        padding: 20px;
+    }
+    
+    .calender {
+        padding: 24px 20px;
+        gap: 32px;
+    }
+    
+    .person {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+        padding: 20px;
+    }
+    
+    .person-text {
+        width: auto;
+        text-align: center;
+        font-size: 1.9rem;
+    }
+}

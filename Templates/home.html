@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="calender">
+            <div class="person"><h1 class="person-text">Joey</h1>
+                <div><button class="day">Maandag</button></div>
+                <div><button class="day">Dinsdag</button></div>
+                <div><button class="day">Woensdag</button></div>
+                <div><button class="day">Donderdag</button></div>
+                <div><button class="day">Vrijdag</button></div>
+                <div><button class="day">Zaterdag</button></div>
+                <div><button class="day">Zondag</button></div>
+            </div>
+            <div class="person"><h1 class="person-text">Wesley</h1>
+                <div><button class="day">Maandag</button></div>
+                <div><button class="day">Dinsdag</button></div>
+                <div><button class="day">Woensdag</button></div>
+                <div><button class="day">Donderdag</button></div>
+                <div><button class="day">Vrijdag</button></div>
+                <div><button class="day">Zaterdag</button></div>
+                <div><button class="day">Zondag</button></div>
+            </div>
+            <div class="person"><h1 class="person-text">Sieb</h1>
+                <div><button class="day">Maandag</button></div>
+                <div><button class="day">Dinsdag</button></div>
+                <div><button class="day">Woensdag</button></div>
+                <div><button class="day">Donderdag</button></div>
+                <div><button class="day">Vrijdag</button></div>
+                <div><button class="day">Zaterdag</button></div>
+                <div><button class="day">Zondag</button></div>
+            </div>
+            <div class="person"><h1 class="person-text">Steef</h1>
+                <div><button class="day">Maandag</button></div>
+                <div><button class="day">Dinsdag</button></div>
+                <div><button class="day">Woensdag</button></div>
+                <div><button class="day">Donderdag</button></div>
+                <div><button class="day">Vrijdag</button></div>
+                <div><button class="day">Zaterdag</button></div>
+                <div><button class="day">Zondag</button></div>
+            </div>
+        </div>
+        <button class="reset-btn" onclick="resetAll()">🗑️ Reset</button>
+    </div>
+</body>
+<script>
+// Load data bij page load
+fetch('/data').then(res => res.json()).then(data => updateButtons(data));
+
+// Update buttons functie
+function updateButtons(data) {
+    document.querySelectorAll('.day').forEach(btn => {
+        const person = btn.closest('.person').querySelector('.person-text').textContent;
+        const day = btn.textContent.trim();
+        btn.classList.toggle('active', data[person]?.[day]);
+    });
+}
+
+// Toggle functie
+function toggle(person, day) {
+    fetch(`/toggle/${person}/${day}`)
+        .then(res => res.json())
+        .then(data => updateButtons(data));
+}
+
+// Reset functie
+function resetAll() {
+    if(confirm('Weet je zeker dat je alle dagen wilt resetten?')) {
+        fetch('/reset')
+            .then(res => res.json())
+            .then(data => updateButtons(data));
+    }
+}
+
+// Klik events
+document.querySelectorAll('.day').forEach(btn => {
+    btn.onclick = () => {
+        const person = btn.closest('.person').querySelector('.person-text').textContent;
+        const day = btn.textContent.trim();
+        toggle(person, day);
+    }
+}
+);
+</script>
+</html>

@@ -1,0 +1,38 @@
+{
+  "Joey": {
+    "Maandag": false,
+    "Dinsdag": false,
+    "Woensdag": false,
+    "Donderdag": false,
+    "Vrijdag": false,
+    "Zaterdag": false,
+    "Zondag": false
+  },
+  "Wesley": {
+    "Maandag": false,
+    "Dinsdag": false,
+    "Woensdag": false,
+    "Donderdag": false,
+    "Vrijdag": false,
+    "Zaterdag": false,
+    "Zondag": false
+  },
+  "Sieb": {
+    "Maandag": false,
+    "Dinsdag": false,
+    "Woensdag": false,
+    "Donderdag": false,
+    "Vrijdag": false,
+    "Zaterdag": false,
+    "Zondag": false
+  },
+  "Steef": {
+    "Maandag": false,
+    "Dinsdag": false,
+    "Woensdag": false,
+    "Donderdag": false,
+    "Vrijdag": false,
+    "Zaterdag": false,
+    "Zondag": false
+  }
+}
